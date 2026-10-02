@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 
     std::printf("Type 'exit' to quit.\n");
     
-    // std::printf("none: %x\n", mcl::token::Unknown);
+    std::printf("none: %x\n", mcl::token::Unknown);
     // std::printf("char: %x\n", mcl::token::Char);
     // std::printf("string: %x\n", mcl::token::String);
     // std::printf("integer: %x\n", mcl::token::Integer);
