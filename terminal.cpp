@@ -131,7 +131,7 @@ void terminal::put(const AnsiColor_t fg, const AnsiColor_t bg, const AnsiStyle_t
 // accept a line of user input
 void terminal::getLine(const std::string& prompt, std::string& line) {
     std::memset(inputBuffer, 0, sizeof(inputBuffer));
-    line = std::string("");
+    line = std::string("\0");
     bool readingInput = true;
 
     std::printf("%s", prompt.c_str());
@@ -140,7 +140,9 @@ void terminal::getLine(const std::string& prompt, std::string& line) {
     while (readingInput) {
         if (NULL == fgets(inputBuffer, sizeof(inputBuffer), stdin)) {
             readingInput = false;
-        } else {
+        } 
+        else {
+            inputBuffer[std::strcspn(inputBuffer, "\n")] = '\0';
             line = std::string(inputBuffer);
             readingInput = false;
         }

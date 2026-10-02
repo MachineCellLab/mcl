@@ -32,7 +32,8 @@ int main(int argc, char** argv) {
         sleep(1);
     }
 
-    // std::printf("Type 'exit' to quit.\n");
+    std::printf("Type 'exit' to quit.\n");
+    
     // std::printf("none: %x\n", mcl::token::Unknown);
     // std::printf("char: %x\n", mcl::token::Char);
     // std::printf("string: %x\n", mcl::token::String);
@@ -46,8 +47,8 @@ int main(int argc, char** argv) {
 
     while (true) {
         std::string line;
-        std::string cmd_exit = "exit\n"; // FIXME: deal with sanitization later.
-
+        std::string cmd_exit = "exit"; 
+        
         term.getLine("i am listening... : ", line);
 
         std::printf("You entered: %s\n", line.c_str());
