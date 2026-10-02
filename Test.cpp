@@ -1,5 +1,6 @@
 #include "terminal.h"
-#include "shell-token.h"
+#include "token.h"
+//#include "shell-token.h"
 
 int main(int argc, char** argv) {
     mcl::terminal term;
@@ -31,17 +32,17 @@ int main(int argc, char** argv) {
         sleep(1);
     }
 
-    std::printf("Type 'exit' to quit.\n");
-    std::printf("none: %x\n", mcl::token::Unknown);
-    std::printf("char: %x\n", mcl::token::Char);
-    std::printf("string: %x\n", mcl::token::String);
-    std::printf("integer: %x\n", mcl::token::Integer);
-    std::printf("count: %x\n", mcl::token::Count);
-    std::printf("real: %x\n", mcl::token::Real);
-    std::printf("paren clause: %x\n", mcl::token::ParenClause);
-    std::printf("brace clause: %x\n", mcl::token::BraceClause);
-    std::printf("bracket clause: %x\n", mcl::token::BracketClause);
-    std::printf("quoted: %x\n", mcl::token::Quoted);    
+    // std::printf("Type 'exit' to quit.\n");
+    // std::printf("none: %x\n", mcl::token::Unknown);
+    // std::printf("char: %x\n", mcl::token::Char);
+    // std::printf("string: %x\n", mcl::token::String);
+    // std::printf("integer: %x\n", mcl::token::Integer);
+    // std::printf("count: %x\n", mcl::token::Count);
+    // std::printf("real: %x\n", mcl::token::Real);
+    // std::printf("paren clause: %x\n", mcl::token::ParenClause);
+    // std::printf("brace clause: %x\n", mcl::token::BraceClause);
+    // std::printf("bracket clause: %x\n", mcl::token::BracketClause);
+    // std::printf("quoted: %x\n", mcl::token::Quoted);    
 
     while (true) {
         std::string line;
