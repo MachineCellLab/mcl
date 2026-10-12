@@ -25,14 +25,21 @@ int main(int argc, char** argv) {
     term.setCursorPosition(17, 75);
     std::printf("(17,75)\n");
 
+    uint16_t cols, rows;
     for (int k = 0; k < 10; ++k) {
-        uint16_t x, y;
-        term.getTerminalSize(x, y);
-        printf("terminal size: %d rows, %d cols\n", x, y);
+        term.getTerminalSize(rows, cols);
+        printf("terminal size: %d rows, %d cols\n", rows, cols);
         sleep(1);
     }
 
-    std::printf("Type 'exit' to quit.\n");
+    // do some splats
+    term.setForegroundColor(mcl::terminal::RED);
+    term.setCursorPosition(17,50);
+    term.put('*');
+
+    term.setForegroundColor(mcl::terminal::GREEN);
+    term.setCursorPosition(rows-4, 1);
+    std::printf("SHELL TIME! Type 'exit' to quit.\n");
     
     // std::printf("none: %x\n", mcl::token::Unknown);
     // std::printf("char: %x\n", mcl::token::Char);
