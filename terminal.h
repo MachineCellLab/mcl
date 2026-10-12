@@ -117,6 +117,10 @@ namespace mcl {
 
             void put(const char* str);
 
+            void printLine(const char* str); // adds a newline
+
+            void printLine(const std::string& str); // adds a newline
+
             void put(const std::string& str);
 
             // fancier prints

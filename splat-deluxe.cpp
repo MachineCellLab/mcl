@@ -5,14 +5,16 @@
 #include <iostream>
 
 
-static const size_t numChars = 20;
+static const size_t numChars = 28;
 
 static char Char[numChars] = {
     '*', '.', '!', '@',
     'o', '-', '%', '#',
     ',', '_', '+', ';',
     '.', '*', '=', 'q',
-    '.', '*', '<', '>'
+    '.', '*', '<', '>',
+    'm', 'j', 'l', '~',
+    '|', '`', '.', '?'
 };
 
 
@@ -45,15 +47,15 @@ int main(int argc, char* argv[] ) {
     std::printf("Detected Screen Size: %d rows %d cols\n",
                     x, y);
 
-    // term.setCursorPosition(1, 1);
-    // term.setForegroundColor(mcl::terminal::WHITE);
-    // term.put('*');
+    term.setCursorPosition(1, 1);
+    term.setForegroundColor(mcl::terminal::WHITE);
+    term.put('*');
 
-    // term.setCursorPosition(10, 85);
-    // term.setForegroundColor(mcl::terminal::RED);
-    // term.put('*'); std::cout.flush();
+    term.setCursorPosition(10, 85);
+    term.setForegroundColor(mcl::terminal::RED);
+    term.put('@');
 
-    // sleep(3);
+    sleep(3);
 
     new_x = 1; 
     new_y = 1;

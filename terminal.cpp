@@ -14,6 +14,9 @@
 #include <sys/ioctl.h>
 #include <sys/stat.h>
 
+#include <cstdio>
+#include <iostream>
+
 using namespace mcl;
 using namespace std;
 
@@ -82,15 +85,36 @@ void terminal::resetStyle() {
 // print stuff out to the terminal
 
 void terminal::put(const char c) {   
-    std::printf("%c", c);   
+    std::putchar(c);   
+    std::cout.flush();
+}
+
+void terminal::printLine(const char* str) {
+    std::printf("%s\n", str);   
+}
+
+void terminal::printLine(const std::string& str) {
+    std::printf("%s\n", str.c_str());   
 }
 
 void terminal::put(const char* str) {
-    std::printf("%s", str);   
+    std::string cppstring(str);
+    this->put(cppstring);  
 }
 
 void terminal::put(const std::string& str) {
-    std::printf("%s", str.c_str());
+    
+    size_t n = 0;
+    const size_t N = str.length();
+    const char* c = str.c_str();
+
+    if (c) {
+        while ((c[n]) && (c[n] != '\n') && (n < N)) {
+            this->put(c[n++]);
+        }
+    }
+
+    std::cout.flush();
 }
 
 // fancier prints
