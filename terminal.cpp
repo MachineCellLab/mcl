@@ -39,8 +39,8 @@ void terminal::bell(void) {
 
 // cursor management
 
-void terminal::setCursorPosition(const uint16_t x, const uint16_t y) {
-    std::printf("\033[%d;%dH", y, x);
+void terminal::setCursorPosition(const uint16_t row, const uint16_t col) {
+    std::printf("\033[%d;%dH", row, col);
 }
 
 void terminal::setCursorPosition(const CursorPosition_t position) {
