@@ -84,7 +84,7 @@ namespace mcl {
 
             // set the cursor position in the terminal
 
-            void setCursorPosition(const uint16_t x, const uint16_t y);
+            void setCursorPosition(const uint16_t row, const uint16_t col);
 
             void setCursorPosition(const CursorPosition_t position);    
 
