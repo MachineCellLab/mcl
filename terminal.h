@@ -88,6 +88,9 @@ namespace mcl {
 
             void setCursorPosition(const CursorPosition_t position);    
 
+            // hide / show the cursor
+            void hideCursor(void);
+            void showCursor(void);
 
             // get the size of the terminal
             void getTerminalSize(uint16_t& rows, uint16_t& cols);

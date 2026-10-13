@@ -172,3 +172,11 @@ void terminal::getLine(const std::string& prompt, std::string& line) {
         }
     }
 }
+
+void terminal::hideCursor(void) {
+    std::printf("\033[?25l"); // Hide cursor
+}
+
+void terminal::showCursor(void) {
+    std::printf("\033[?25h"); // Show cursor
+}
