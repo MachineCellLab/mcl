@@ -52,7 +52,7 @@ int main(int argc, char* argv[] ) {
         // select splat origin
         new_x = x_distrib(gen);
         new_y = y_distrib(gen);
-        color = (mcl::terminal::AnsiColor_t )color_distrib(gen);
+        color = (mcl::terminal::AnsiColor_t)color_distrib(gen);
 
         term.setCursorPosition(new_x, new_y);
         term.setForegroundColor(color);
