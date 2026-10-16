@@ -28,11 +28,11 @@ static void makeBox(mcl::terminal::CursorPosition_t upperLeft,
     term.setCursorPosition(upperLeft);
     term.put(mcl::terminal::UpperLeftCorner);
 
-    //term.setCursorPosition(lowerRight);
-    //term.put(mcl::terminal::LowerRightCorner);
-
     term.setCursorPosition(upperRight);
     term.put(mcl::terminal::UpperRightCorner);
+
+    //term.setCursorPosition(lowerRight);
+    //term.put(mcl::terminal::LowerRightCorner);
 
     //term.setCursorPosition(lowerLeft);
     //term.put(mcl::terminal::LowerLeftCorner);
