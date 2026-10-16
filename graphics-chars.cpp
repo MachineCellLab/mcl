@@ -19,7 +19,7 @@ static void printout(uint16_t row,
 static void makeBox(mcl::terminal::CursorPosition_t upperLeft, 
                     mcl::terminal::CursorPosition_t lowerRight) {
     uint16_t r,c;
-    mcl::terminal::CursorPosition_t lowerLeft = {upperLeft.col, lowerRight.row};
+    mcl::terminal::CursorPosition_t lowerLeft = {lowerRight.col, lowerLeft.row};
     mcl::terminal::CursorPosition_t upperRight = {upperLeft.row, lowerRight.col};
 
     // draw the corners
