@@ -47,7 +47,7 @@ void terminal::setCursorPosition(const uint16_t row, const uint16_t col) {
 }
 
 void terminal::setCursorPosition(const CursorPosition_t position) {
-    std::printf("\033[%d;%dH", position.y, position.x);
+    std::printf("\033[%d;%dH", position.row, position.col);
 }   
 
 void terminal::getTerminalSize(uint16_t& rows, uint16_t& cols) {

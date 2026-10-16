@@ -16,10 +16,60 @@ static void printout(uint16_t row,
     term.put(gchar);
 }
 
-int main (int argc, char *argv[]) {
-    term.clear();
-    term.hideCursor();
+static void makeBox(mcl::terminal::CursorPosition_t upperLeft, 
+                    mcl::terminal::CursorPosition_t lowerRight) {
+    uint16_t r,c;
+    mcl::terminal::CursorPosition_t lowerLeft = {upperLeft.col, lowerRight.row};
+    mcl::terminal::CursorPosition_t upperRight = {upperLeft.row, lowerRight.col};
 
+    // draw the corners
+    term.setGraphicsMode(true);
+
+    term.setCursorPosition(upperLeft);
+    term.put(mcl::terminal::UpperLeftCorner);
+
+    //term.setCursorPosition(lowerRight);
+    //term.put(mcl::terminal::LowerRightCorner);
+
+    term.setCursorPosition(upperRight);
+    term.put(mcl::terminal::UpperRightCorner);
+
+    //term.setCursorPosition(lowerLeft);
+    //term.put(mcl::terminal::LowerLeftCorner);
+
+    // upper line
+    r = upperLeft.row;
+    for (c = upperLeft.col+1; c < lowerRight.col; c++) {
+        term.setCursorPosition(r,c);
+        term.put(mcl::terminal::Horizontal);
+    }
+
+    // lower line
+    //r = lowerRight.row;
+    //for (c = upperLeft.col; c < lowerRight.col; c++) {
+        //term.setCursorPosition(r,c);
+      //  term.put(mcl::terminal::Horizontal);
+    //}
+
+    // right hand side
+    //c = lowerRight.col;
+    //for (r = upperLeft.row+1; r < lowerRight.row-1; r++) {
+        //term.setCursorPosition(r,c);
+      //  term.put(mcl::terminal::Vertical);
+    //}
+
+    // side, sinister...
+    //c = lowerRight.col;
+    //for (r = upperLeft.row+1; r < lowerRight.row-1; r++) {
+      //  term.setCursorPosition(r,c);
+        //term.put(mcl::terminal::Vertical);
+    //}
+
+    term.setGraphicsMode(true);
+    term.printLine("\r");
+}
+
+static void printGraphicsChars(void) {
     printout(1, 1, "LowerLeftCorner:", mcl::terminal::LowerLeftCorner);
     printout(3, 1, "LowerRightCorner:", mcl::terminal::LowerRightCorner);
     printout(5, 1, "UpperLeftCorner:", mcl::terminal::UpperLeftCorner);
@@ -40,6 +90,20 @@ int main (int argc, char *argv[]) {
     printout(25, 1, "PlusMinus:", mcl::terminal::PlusMinus);
 
     term.printLine("");
+}
+
+int main (int argc, char *argv[]) {
+    term.clear();
+    term.hideCursor();
+
+    printGraphicsChars();
+    sleep(3);
+
+    // BOX: 20 wide, 5 tall
+    mcl::terminal::CursorPosition_t ul = {30, 30};
+    mcl::terminal::CursorPosition_t lr = {35, 50};
+    makeBox(ul, lr);
 
     term.setGraphicsMode(false);
+    term.printLine("");
 }

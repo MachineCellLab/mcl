@@ -13,8 +13,8 @@ namespace mcl {
             static const size_t MAX_INPUT_LINE = 4096;
 
             typedef struct _CursorPosition {
-                uint16_t x;
-                uint16_t y;
+                uint16_t row;
+                uint16_t col;
             } CursorPosition_t;
 
             typedef enum _AnsiColor : uint8_t {
