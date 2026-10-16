@@ -64,6 +64,10 @@ static void makeBox(mcl::terminal::CursorPosition_t upperLeft,
     }
 
     term.setGraphicsMode(false);
+    uint16_t textRow = (upperLeft.row + 2);
+    uint16_t textCol = (upperLeft.col + 2);
+    //term.setCursorPosition(textRow, textCol);
+    //term.put("Yes!");
 }
 
 static void printGraphicsChars(void) {
