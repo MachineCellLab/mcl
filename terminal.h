@@ -72,6 +72,29 @@ namespace mcl {
                 BACKSPACE =  127    /* Backspace */
             } CtrlKey_t;
 
+            static constexpr const char* VT_MODE_GRAPHICS = "\033(0";
+            static constexpr const char* VT_MODE_ASCII    = "\033(B";
+
+            typedef enum _GraphicsChar : char {
+                LowerRightCorner = 0x6a,
+                UpperRightCorner = 0x6b,
+                UpperLeftCorner = 0x6c,
+                LowerLeftCorner = 0x6d,
+
+                CrossTee = 0x6e,
+                Horizontal = 0x71,
+                LeftTee = 0x74,
+                RightTee = 0x75,
+                BottomTee = 0x76,
+                TopTee = 0x77,
+                Vertical = 0x78,
+
+                CheckerBoard = 0x61,
+                Degree = 0x66,
+
+                PlusMinus = 0x67
+            } GraphicsChar_t;
+
             terminal();
 
             virtual ~terminal();
@@ -135,6 +158,9 @@ namespace mcl {
             void put(const AnsiColor_t fg, const AnsiColor_t bg, const char c);
 
             void put(const AnsiColor_t fg, const AnsiColor_t bg, const AnsiStyle_t style, const char c); 
+
+            // graphics mode on/off
+            void setGraphicsMode(const bool setToGraphics);
 
             // accept a line of user input
             void getLine(const std::string& prompt, std::string& line);

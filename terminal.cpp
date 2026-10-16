@@ -180,3 +180,13 @@ void terminal::hideCursor(void) {
 void terminal::showCursor(void) {
     std::printf("\033[?25h"); // Show cursor
 }
+
+// graphics mode on/off
+void terminal::setGraphicsMode(const bool setToGraphics) {
+    if (setToGraphics) {
+        std::printf("\033(0");
+    }
+    else {
+        std::printf("\033(B");
+    }
+}
