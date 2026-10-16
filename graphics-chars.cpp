@@ -28,6 +28,13 @@ static void makeBox(mcl::terminal::CursorPosition_t upperLeft,
     term.setCursorPosition(upperLeft);
     term.put(mcl::terminal::UpperLeftCorner);
 
+    // upper line
+    r = upperLeft.row;
+    for (c = upperLeft.col+1; c < lowerRight.col; c++) {
+        term.setCursorPosition(r,c);
+        term.put(mcl::terminal::Horizontal);
+    }
+
     term.setCursorPosition(upperRight);
     term.put(mcl::terminal::UpperRightCorner);
 
@@ -37,35 +44,30 @@ static void makeBox(mcl::terminal::CursorPosition_t upperLeft,
     //term.setCursorPosition(lowerLeft);
     //term.put(mcl::terminal::LowerLeftCorner);
 
-    // upper line
-    r = upperLeft.row;
-    for (c = upperLeft.col+1; c < lowerRight.col; c++) {
-        term.setCursorPosition(r,c);
-        term.put(mcl::terminal::Horizontal);
-    }
+    
 
     // lower line
     //r = lowerRight.row;
     //for (c = upperLeft.col; c < lowerRight.col; c++) {
-        //term.setCursorPosition(r,c);
-      //  term.put(mcl::terminal::Horizontal);
+      //  term.setCursorPosition(r,c);
+        //term.put(mcl::terminal::Horizontal);
     //}
 
-    // right hand side
+    // side, sinister...
     //c = lowerRight.col;
     //for (r = upperLeft.row+1; r < lowerRight.row-1; r++) {
         //term.setCursorPosition(r,c);
       //  term.put(mcl::terminal::Vertical);
     //}
 
-    // side, sinister...
+    // side, dexter...
     //c = lowerRight.col;
     //for (r = upperLeft.row+1; r < lowerRight.row-1; r++) {
       //  term.setCursorPosition(r,c);
         //term.put(mcl::terminal::Vertical);
     //}
 
-    term.setGraphicsMode(true);
+    term.setGraphicsMode(false);
     term.printLine("\r");
 }
 
