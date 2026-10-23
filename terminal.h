@@ -4,6 +4,13 @@
 #include <unistd.h>
 #include <stdint.h>
 #include <stddef.h> 
+
+#include <termios.h>
+#include <fcntl.h>
+#include <signal.h>
+#include <sys/ioctl.h>
+#include <sys/stat.h>
+
 #include <cstdio>
 #include <string>
 
@@ -92,6 +99,12 @@ namespace mcl {
             void hideCursor(void);
             void showCursor(void);
 
+            // set/clear 'raw mode' 
+            void setRawMode(bool tf);
+
+            // get one char
+            char getRawChar(void); 
+
             // get the size of the terminal
             void getTerminalSize(uint16_t& rows, uint16_t& cols);
 
@@ -144,6 +157,7 @@ namespace mcl {
             char inputBuffer[MAX_INPUT_LINE];
 
         private:
+            struct termios prevTermAttr; // used for raw mode toggling...
             // tbd
     }; // end class terminal
 } // end namespace mcl

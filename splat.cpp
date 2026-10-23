@@ -45,8 +45,14 @@ int main(int argc, char* argv[] ) {
     size_t rounds = 0;
     mcl::terminal::AnsiColor_t color;
 
+    // put into raw mode so we can scan keys
+    term.hideCursor();
 
     while(true) {
+        char rc = term.getRawChar();
+
+        if ((rc=='q')||(rc=='Q')) {break;}
+
         // FIXME: make a size-change an update event
 
         // select splat origin
@@ -57,19 +63,13 @@ int main(int argc, char* argv[] ) {
         term.setCursorPosition(new_x, new_y);
         term.setForegroundColor(color);
         term.put('*'); std::cout.flush();
-        
-        //usleep(1000);
-        //term.setCursorPosition(new_x, new_y);
-        //term.put(' '); std::cout.flush();
-
-        // new_x++;
-        // new_y++;
-
-        // printf("!");
 
         // sleeep
         usleep(100);
 
+        // update
         if (1 == (rounds++ % 1000)) { term.clear(); }
     }
+
+    term.showCursor();
 }

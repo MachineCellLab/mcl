@@ -7,14 +7,7 @@
 #include <ctype.h>
 #include <stdint.h>
 
-#include <unistd.h>
-#include <termios.h>
-#include <fcntl.h>
-#include <signal.h>
-#include <sys/ioctl.h>
-#include <sys/stat.h>
 
-#include <cstdio>
 #include <iostream>
 
 using namespace mcl;
@@ -39,6 +32,23 @@ void terminal::home(void) {
 void terminal::bell(void) { 
     std::printf("\a"); 
 }
+
+// set/clear 'raw mode' 
+void terminal::setRawMode(bool tf) {
+    struct termios upd = {0};
+
+    if (tf) {
+        tcgetattr(STDIN_FILENO, &this->prevTermAttr);
+        upd = this->prevTermAttr;
+        upd.c_lflag &= ~(ICANON | ECHO /*| ISIG*/); // echoing off, canonical off, no signal chars
+	    upd.c_cc[VMIN] = 1; // return on 1st char
+	    upd.c_cc[VTIME] = 0; // no timeout
+        tcsetattr(STDIN_FILENO,TCSAFLUSH,&upd);
+    }
+    else {
+        tcsetattr(STDIN_FILENO,TCSAFLUSH,&this->prevTermAttr);
+    } 
+} 
 
 // cursor management
 
@@ -171,6 +181,26 @@ void terminal::getLine(const std::string& prompt, std::string& line) {
             readingInput = false;
         }
     }
+}
+
+// get one char
+char terminal::getRawChar(void) {
+    struct termios org = {0};
+    struct termios upd = {0};
+    int tc = 0;
+
+    tcgetattr(STDIN_FILENO, &org);
+    upd = org;
+    upd.c_lflag &= ~(ICANON | ECHO);
+
+    upd.c_cc[VMIN] = 0; // return on 1st char
+    upd.c_cc[VTIME] = 0; // no timeout
+
+    tcsetattr(STDIN_FILENO, TCSANOW, &upd);
+    tc = getchar(); // FIXME: handle escape codes too
+    tcsetattr(STDIN_FILENO, TCSANOW, &org);
+
+    return (char)tc;
 }
 
 void terminal::hideCursor(void) {
