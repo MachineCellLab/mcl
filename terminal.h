@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stddef.h> 
 #include <cstdio>
+#include <iostream>
 #include <string>
 
 namespace mcl {
