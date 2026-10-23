@@ -63,7 +63,8 @@ int main(int argc, char* argv[] ) {
     mcl::terminal::AnsiColor_t color;
 
     while(true) {
-        // FIXME: make a size-change an update event
+        uint16_t COLS, ROWS;
+        term.getTerminalSize(ROWS, COLS);
 
         // select splat origin
         new_x = x_distrib(gen);
@@ -75,16 +76,6 @@ int main(int argc, char* argv[] ) {
         term.setForegroundColor(color);
         term.put(c); std::cout.flush();
         
-        //usleep(1000);
-        //term.setCursorPosition(new_x, new_y);
-        //term.put(' '); std::cout.flush();
-
-        // new_x++;
-        // new_y++;
-
-        // printf("!");
-
-        // sleeep
         usleep(100);
 
         if (1 == (rounds++ % 1000)) { term.clear(); }

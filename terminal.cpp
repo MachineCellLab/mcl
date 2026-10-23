@@ -47,7 +47,7 @@ void terminal::setCursorPosition(const uint16_t row, const uint16_t col) {
 }
 
 void terminal::setCursorPosition(const CursorPosition_t position) {
-    std::printf("\033[%d;%dH", position.y, position.x);
+    std::printf("\033[%d;%dH", position.row, position.col);
 }   
 
 void terminal::getTerminalSize(uint16_t& rows, uint16_t& cols) {
@@ -179,4 +179,14 @@ void terminal::hideCursor(void) {
 
 void terminal::showCursor(void) {
     std::printf("\033[?25h"); // Show cursor
+}
+
+// graphics mode on/off
+void terminal::setGraphicsMode(const bool setToGraphics) {
+    if (setToGraphics) {
+        std::printf("\033(0");
+    }
+    else {
+        std::printf("\033(B");
+    }
 }

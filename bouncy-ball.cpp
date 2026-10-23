@@ -18,7 +18,7 @@ int main(int argc, char* argv[] ) {
     std::uniform_int_distribution<uint16_t>    col_distrib(1, COLS);
     std::uniform_int_distribution<uint8_t>     color_distrib(0,7);
 
-    mcl::terminal::AnsiColor_t color = mcl::terminal::RED;
+    mcl::terminal::AnsiColor_t color = mcl::terminal::GREEN;
 
     //std::uniform_real_distribution<double> distrib(0.0, 1.0);
     // std::cout << distrib(gen);
@@ -49,10 +49,10 @@ int main(int argc, char* argv[] ) {
         term.setForegroundColor(color);
         term.setCursorPosition(y,x);
         term.put('*');
-        usleep(10000);
+        usleep(16666);
         term.setCursorPosition(y,x);
         term.put(' ');
-        usleep(10000);
+        //usleep(10);
 
         // increment
         x += delta_x;

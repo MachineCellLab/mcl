@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stddef.h> 
 #include <cstdio>
+#include <iostream>
 #include <string>
 
 namespace mcl {
@@ -13,8 +14,8 @@ namespace mcl {
             static const size_t MAX_INPUT_LINE = 4096;
 
             typedef struct _CursorPosition {
-                uint16_t x;
-                uint16_t y;
+                uint16_t row;
+                uint16_t col;
             } CursorPosition_t;
 
             typedef enum _AnsiColor : uint8_t {
@@ -72,6 +73,29 @@ namespace mcl {
                 BACKSPACE =  127    /* Backspace */
             } CtrlKey_t;
 
+            static constexpr const char* VT_MODE_GRAPHICS = "\033(0";
+            static constexpr const char* VT_MODE_ASCII    = "\033(B";
+
+            typedef enum _GraphicsChar : char {
+                LowerRightCorner = 0x6a,
+                UpperRightCorner = 0x6b,
+                UpperLeftCorner = 0x6c,
+                LowerLeftCorner = 0x6d,
+
+                CrossTee = 0x6e,
+                Horizontal = 0x71,
+                LeftTee = 0x74,
+                RightTee = 0x75,
+                BottomTee = 0x76,
+                TopTee = 0x77,
+                Vertical = 0x78,
+
+                CheckerBoard = 0x61,
+                Degree = 0x66,
+
+                PlusMinus = 0x67
+            } GraphicsChar_t;
+
             terminal();
 
             virtual ~terminal();
@@ -103,38 +127,29 @@ namespace mcl {
             void clearScrollingRegion(void);
 
             // manage the colors of the text in the terminal
-
             void setForegroundColor(const AnsiColor_t color);
-
             void setBackgroundColor(const AnsiColor_t color);
 
             // manage the style of the text in the terminal
-
             void setStyle(const AnsiStyle_t style);
-
             void resetStyle(void);
 
             // put stuff out to the terminal
-
             void put(const char c);
-
             void put(const char* str);
-
             void printLine(const char* str); // adds a newline
-
             void printLine(const std::string& str); // adds a newline
-
             void put(const std::string& str);
 
             // fancier prints
 
             void put(const AnsiColor_t fg, const AnsiColor_t bg, const std::string& str);
-
             void put(const AnsiColor_t fg, const AnsiColor_t bg, const AnsiStyle_t style, const std::string& str);     
-
             void put(const AnsiColor_t fg, const AnsiColor_t bg, const char c);
-
             void put(const AnsiColor_t fg, const AnsiColor_t bg, const AnsiStyle_t style, const char c); 
+
+            // graphics mode on/off
+            void setGraphicsMode(const bool setToGraphics);
 
             // accept a line of user input
             void getLine(const std::string& prompt, std::string& line);
