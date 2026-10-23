@@ -1,4 +1,13 @@
 #!/bin/sh
+rm *.o
+
+rm TEST
+rm SPLAT
+rm DELUXE-SPLAT
+rm BALL
+rm THOLIAN
+rm GRAFX
+
 g++ -c terminal.cpp
 g++ -o TEST *.o Test.cpp
 g++ -o SPLAT *.o splat.cpp

@@ -97,14 +97,14 @@ int main (int argc, char *argv[]) {
     term.clear();
     term.hideCursor();
 
-    printGraphicsChars();
+    printGraphicsChars(); 
     sleep(3);
 
     // BOX: 40 wide, 5 tall
     mcl::terminal::CursorPosition_t ul = {30, 30};
     mcl::terminal::CursorPosition_t lr = {35, 70};
-    makeBox(ul, lr);
+    //makeBox(ul, lr);
 
     term.setGraphicsMode(false);
-    term.printLine("");
+    //term.printLine("");
 }

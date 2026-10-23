@@ -38,7 +38,7 @@ int main(int argc, char* argv[] ) {
     term.setCursorPosition(ROWS/2, COLS/2);
     term.put("GO!");
 
-    size_t max_rounds = (ROWS * COLS);
+    size_t max_rounds = 20*(ROWS * COLS);
     size_t rounds = 0;
 
     term.hideCursor();
@@ -49,6 +49,9 @@ int main(int argc, char* argv[] ) {
         term.setCursorPosition(y,x);
         term.put('*');
         usleep(1000);
+
+        mcl::terminal::AnsiColor_t color = (mcl::terminal::AnsiColor_t)color_distrib(gen);
+        term.setForegroundColor(color);
 
         // increment
         x += delta_x;
@@ -72,10 +75,10 @@ int main(int argc, char* argv[] ) {
         }
 
         // possible reset condition?
-        if ((x==1)&&(y==1)) {term.clear();}
+        //if ((x==1)&&(y==1)) {term.clear();}
 
         // another one?
         rounds++;
-        if (rounds > max_rounds) {term.clear(); rounds = 0;}
+        //if (rounds > max_rounds) {term.clear(); rounds = 0;}
     }
 }

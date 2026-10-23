@@ -126,37 +126,25 @@ namespace mcl {
             void clearScrollingRegion(void);
 
             // manage the colors of the text in the terminal
-
             void setForegroundColor(const AnsiColor_t color);
-
             void setBackgroundColor(const AnsiColor_t color);
 
             // manage the style of the text in the terminal
-
             void setStyle(const AnsiStyle_t style);
-
             void resetStyle(void);
 
             // put stuff out to the terminal
-
             void put(const char c);
-
             void put(const char* str);
-
             void printLine(const char* str); // adds a newline
-
             void printLine(const std::string& str); // adds a newline
-
             void put(const std::string& str);
 
             // fancier prints
 
             void put(const AnsiColor_t fg, const AnsiColor_t bg, const std::string& str);
-
             void put(const AnsiColor_t fg, const AnsiColor_t bg, const AnsiStyle_t style, const std::string& str);     
-
             void put(const AnsiColor_t fg, const AnsiColor_t bg, const char c);
-
             void put(const AnsiColor_t fg, const AnsiColor_t bg, const AnsiStyle_t style, const char c); 
 
             // graphics mode on/off
