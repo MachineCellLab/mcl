@@ -64,10 +64,6 @@ static void makeBox(mcl::terminal::CursorPosition_t upperLeft,
     std::cout.flush();
 
     term.setGraphicsMode(false);
-    //uint16_t textRow = (upperLeft.row + 2);
-    //uint16_t textCol = (upperLeft.col + 2);
-    //term.setCursorPosition(textRow, textCol);
-    //term.put("Yes!");
 }
 
 static void printGraphicsChars(void) {
@@ -100,17 +96,16 @@ int main (int argc, char *argv[]) {
     printGraphicsChars();
     sleep(2);
 
-    // BOX: 40 wide, 5 tall
+    // BOX1: 40 wide, 5 tall
     mcl::terminal::CursorPosition_t ul = {30, 30};
     mcl::terminal::CursorPosition_t lr = {35, 70};
     makeBox(ul, lr);
     
-    //ul = {1,1};
-    //lr = {7,11};
-    //makeBox(ul, lr);
+    uint16_t textRow = (ul.row + 2);
+    uint16_t textCol = (ul.col + 20);
+    term.setCursorPosition(textRow, textCol);
+    term.put("Yes!");
 
-    //term.setCursorPosition(32, 32);
-
-    //term.setGraphicsMode(false);
-    //term.printLine("");
+    term.setGraphicsMode(false);
+    while(1);
 }
