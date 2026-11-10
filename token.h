@@ -23,3 +23,21 @@ namespace mcl {
 }
 
 #endif // _mcl_token_
+
+/*
+    a 'token' is a constant string of chars, variably sized
+
+    possible sizes are? 8-16-32-64
+
+    the cat sat on the mat (none over 3 chars!
+    
+    -type, len, 
+*/
+
+tokenBuffer.add(token);
+tokenBuffer.popFront();
+
+
+ 
+
+/* a string */
